@@ -1,0 +1,30 @@
+.menu {
+  position: absolute;
+  font-size: 1.2rem;
+  padding: 1.2rem 1.2rem;
+  top: 80%;
+  right: -35%;
+  z-index: 1;
+  list-style-type: none;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(44, 137, 199);
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.menu li {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu li:hover,
+a:hover {
+  color: white;
+}

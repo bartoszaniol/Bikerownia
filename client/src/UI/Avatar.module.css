@@ -1,0 +1,9 @@
+.avatar {
+    height: 4rem;
+    width: 4rem;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+  }

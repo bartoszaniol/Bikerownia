@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    height: 13rem;
+    width: 13rem;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.info_list {
+    list-style-type: none;
+    position: relative;
+    
+}
+
+.info_list li {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button {
+    position: relative;
+    right: 0;
+    left: 70%;
+    margin-top: 1rem;
+}
+
+.display{
+    margin-right: 2rem;
+}
+
+.display span{
+    padding-left: 2.5rem;
+}

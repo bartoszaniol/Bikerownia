@@ -1,0 +1,29 @@
+.wrapper{
+    display: flex;
+    /* background: #ccc; */
+    align-items: center;
+    height: 2rem;
+}
+
+.search{
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.search input{
+    border-radius: 5px;
+    border: 2px solid rgb(44, 137, 199);
+}
+
+.search input:focus{
+    outline: none;
+}
+
+.search svg {
+   color: white;
+   background-color: rgb(44, 137, 199);
+   border-radius: 5px;
+   cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
+    border: 3px blue solid;
+    border-radius: 5px;
+    width: 40%;
+    margin: 1rem auto;
+}
+
+.profile {
+    width: 60%;
+}
+
+.list {
+    width: 80%
+}
