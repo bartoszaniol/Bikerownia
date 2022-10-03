@@ -1,9 +1,7 @@
-import styles from './Badge.module.css'
+import styles from "./Badge.module.css";
 
 const Badge = () => {
-  return (
-    <div className={styles.badge}>3</div>
-  )
-}
+  return <div className={styles.badge}>3</div>;
+};
 
-export default Badge
+export default Badge;

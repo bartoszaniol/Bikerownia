@@ -1,6 +1,6 @@
 import styles from "./Store.module.css";
 import Navigation from "../../UI/Navigation";
-import ProductsList from "../components/ProductsList";
+import PostsList from "../components/PostsList";
 import Carousel from "../components/Carousel";
 import FloatingButton from "../../UI/FloatingButton";
 
@@ -45,7 +45,7 @@ const Store = () => {
       <Navigation />
       <span className={styles.categories}>Categories</span>
       <Carousel />
-      <ProductsList items={PRODUCT_ITEMS} />
+      <PostsList items={PRODUCT_ITEMS} />
       <FloatingButton/>
     </>
   );

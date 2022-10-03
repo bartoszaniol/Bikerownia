@@ -17,7 +17,7 @@ const LoginForm = () => {
   return (
     <>
       <form className={styles.form}>
-        {isLogging && <div>Rowerownia</div>}
+        {isLogging && <div className={styles.name}>Rowerownia</div>}
         {!isLogging && (
           <div className={styles.avatar}>
             <div className={styles.avatarContent}>+</div>
