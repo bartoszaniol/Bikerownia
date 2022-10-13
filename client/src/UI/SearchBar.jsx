@@ -6,7 +6,7 @@ const SearchBar = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.search}>
-        <input type="text" placeholder="Search.." />
+        <input type="text" placeholder="Search..." />
         <SearchIcon />
       </div>
     </div> 

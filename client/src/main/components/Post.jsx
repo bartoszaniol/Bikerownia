@@ -1,4 +1,5 @@
 import styles from "./Post.module.css";
+import Button from './../../UI/Button'
 
 const Post = (props) => {
   return (
@@ -9,10 +10,16 @@ const Post = (props) => {
       <div className={styles.lineBreak}></div>
       <div className={styles.info}>
         <span className={styles.name}>{props.name}</span>
-        <span className={styles.price}>${props.price}</span>
       </div>
       <div className={styles.description}>{props.description}</div>
-    <button>Comment</button>
+      <div className={styles.functions}>
+        <div className={styles.points}>
+          <div className={`${styles.vote} ${styles.upVote}`}>+</div>
+          <div className={styles.count}>4</div>
+          <div className={`${styles.vote} ${styles.downVote}`}>-</div>
+        </div>
+        <Button>Comment</Button>
+      </div>
     </li>
   );
 };

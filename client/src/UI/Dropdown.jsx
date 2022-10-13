@@ -8,7 +8,7 @@ const Dropdown = () => {
     <ul className={styles.menu}>
         <li>
           <InventoryIcon />
-          <Link to="/user">My products</Link>
+          <Link to="/user">My posts</Link>
         </li>
         <li>
           <LogoutIcon />

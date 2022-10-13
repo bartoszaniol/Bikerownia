@@ -1,27 +1,34 @@
 import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
-
-// import SellIcon from "@mui/icons-material/Sell";
 import Avatar from "./Avatar";
-// import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar";
+import { useState } from "react";
+import Modal from "./Modal";
 
 const Navigation = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    <nav className={styles.navigation}>
-      <div className={styles.logo}>
-        <Link to="/">Bike market</Link>
-      </div>
-      <div className="search_bar">
-        {/* <SearchBar /> */}
-      </div>
-      <div className={styles.right_functions}>
-        {/* <div className={styles.sell}>
-          <SellIcon />
-          <Link to="/sell">Sell a bike</Link>
-        </div> */}
-        <Avatar />
-      </div>
-    </nav>
+    <>
+      <nav className={styles.navigation}>
+        <div className={styles.logo}>
+          <Link to="/">Bikerownia</Link>
+        </div>
+        <div className={styles.search}>
+          <SearchBar />
+        </div>
+        <div className={styles.right_functions}>
+          <div
+            className={styles.add}
+            onClick={() => setOpenModal(true)}
+          >
+            Add new post
+          </div>
+          <Avatar />
+        </div>
+      </nav>
+      {openModal && <Modal onCancel={() => setOpenModal(false)}/>}
+    </>
   );
 };
 

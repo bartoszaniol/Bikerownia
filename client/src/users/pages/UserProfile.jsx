@@ -1,18 +1,21 @@
 import Navigation from "../../UI/Navigation";
 import Card from "../../UI/Card";
 import UserInfo from "../components/UserInfo";
-import PostsList from "../../store/components/PostsList";
+import PostsList from "../../main/components/PostsList";
+import styles from './UserProfile.module.css'
 
 const UserDetails = () => {
   return (
     <>
       <Navigation />
-      <Card name="">
-        <UserInfo />
-      </Card>
-      <Card name="list">
-        <PostsList items={[]} />
-      </Card>
+      <main className={styles.profile}>
+        <Card>
+          <UserInfo />
+        </Card>
+        <Card>
+          <PostsList items={[]} />
+        </Card>
+      </main>
     </>
   );
 };

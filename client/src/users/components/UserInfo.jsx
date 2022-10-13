@@ -19,19 +19,27 @@ const UserInfo = () => {
         >
           <li>
             <label htmlFor="">Name</label>
-            {isEditing ? <input type="text" value={User.name} /> : <span>{User.name}</span>}
+            {isEditing ? (
+              <input type="text" value={User.name} />
+            ) : (
+              <span>{User.name}</span>
+            )}
           </li>
           <li>
             <label htmlFor="">Phone number</label>
             {isEditing ? (
-              <input type="text" value={User.phone_number}/>
+              <input type="text" value={User.phone_number} />
             ) : (
               <span>{User.phone_number}</span>
             )}
           </li>
           <li>
             <label htmlFor="">Some other stuff</label>
-            {isEditing ? <input type="text" value={User.other} /> : <span>{User.other}</span>}
+            {isEditing ? (
+              <input type="text" value={User.other} />
+            ) : (
+              <span>{User.other}</span>
+            )}
           </li>
           {/* <li>
             <div>Rating</div>
@@ -40,20 +48,24 @@ const UserInfo = () => {
           <div className={styles.button}>
             {isEditing ? (
               <Button
-                text="Save"
                 type="submit"
                 onClick={() => {
                   setIsEditing(false);
                 }}
-              />
+              >
+                {" "}
+                Save
+              </Button>
             ) : (
               <Button
-                text="Edit"
                 type="submit"
                 onClick={() => {
                   setIsEditing(true);
                 }}
-              />
+              >
+                {" "}
+                Edit
+              </Button>
             )}
           </div>
         </ul>

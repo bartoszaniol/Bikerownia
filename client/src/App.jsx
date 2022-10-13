@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import Login from "./login/pages/Login";
-import Store from "./store/pages/Store";
-import Sell from "./store/pages/Sell";
+import Main from "./main/pages/Main";
 import Users from "./users/pages/Users";
 import UserProfile from "./users/pages/UserProfile";
 import './App.css'
@@ -12,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact> {/* Main product page*/}
-          <Store />
+          <Main />
         </Route>
         <Route path="/login" exact> {/* Login Page*/}
           <Login />
@@ -22,9 +21,6 @@ function App() {
         </Route>
         <Route path="/users/:userId" exact> {/* Other user details and products*/}
           <Users />
-        </Route>
-        <Route path="/sell" exact> {/* Selling page*/}
-          <Sell />
         </Route>
         <Redirect to="/" />
       </Switch>
