@@ -14,8 +14,8 @@ router.get("/:pid", postsControllers.getPostById);
 
 router.patch("/:pid", postsControllers.updatePost);
 
-router.delete("/:postId", postsControllers.deletePost);
+router.delete("/:pid", postsControllers.deletePost);
 
-router.post("/:postId/comment", postsControllers.addComment);
+router.post("/:pid/comment", postsControllers.addComment);
 
 module.exports = router;

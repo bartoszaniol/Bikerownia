@@ -18,4 +18,14 @@ const findUser = (req, res, next) => {
   res.json({ message: "Found it" });
 };
 
+const signIn = (req, res, next) => {
+  console.log("Signin In");
+};
+
+const signUp = (req, res, next) => {
+  console.log("Signin In");
+};
+
 exports.findUser = findUser;
+exports.signIn = signIn;
+exports.signUp = signUp;

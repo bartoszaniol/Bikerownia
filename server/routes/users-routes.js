@@ -10,5 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:uid", usersControllers.findUser);
+router.get("/signIn", usersControllers.signIn);
+router.get("/signUp", usersControllers.signUp);
 
 module.exports = router;
