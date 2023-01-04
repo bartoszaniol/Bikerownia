@@ -4,13 +4,10 @@ const usersControllers = require("../controllers/users-controller");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  console.log(" GET");
-  res.json({ message: "uzaa" });
-});
+router.get("/:uid", usersControllers.findUser); // Get a user
 
-router.get("/:uid", usersControllers.findUser);
-router.get("/signIn", usersControllers.signIn);
-router.get("/signUp", usersControllers.signUp);
+router.post("/login", usersControllers.login); // Log in
+
+router.post("/signUp", usersControllers.signup); // Sign up
 
 module.exports = router;

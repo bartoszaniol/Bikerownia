@@ -4,18 +4,18 @@ const postsControllers = require("../controllers/posts-controller");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({ DUMMY_POSTS });
-});
+router.get("/", postsControllers.getPosts); // Get all posts
 
-router.post("/", postsControllers.addPost);
+router.post("/", postsControllers.addPost); // Add a new post
 
-router.get("/:pid", postsControllers.getPostById);
+router.get("/:pid", postsControllers.getPostById); // Get a post by its id
 
-router.patch("/:pid", postsControllers.updatePost);
+router.get("/user/:uid", postsControllers.getUserPostsById); // Get all user's posts
 
-router.delete("/:pid", postsControllers.deletePost);
+router.patch("/:pid", postsControllers.updatePost); // Update a post
 
-router.post("/:pid/comment", postsControllers.addComment);
+router.delete("/:pid", postsControllers.deletePost); // Delete a post
+
+router.post("/:pid/comment", postsControllers.addComment); // Add a comment to a post
 
 module.exports = router;

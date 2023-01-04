@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import styles from "./LoginForm.module.css";
 
@@ -26,17 +26,11 @@ const LoginForm = () => {
         )}
         {!isLogging && (
           <div>
-            <label htmlFor="first-name">First name</label>
+            <label htmlFor="first-name">Username</label>
             <input type="text" id="first-name" />
           </div>
         )}
-        {!isLogging && (
-          <div>
-            <label htmlFor="last-name">Last name</label>
-            <input type="text" id="last-name" />
-          </div>
-        )}
-        <div className={`${isLogging ? styles.first : ''}`}>
+        <div className={`${isLogging ? styles.first : ""}`}>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" />
         </div>
@@ -44,7 +38,7 @@ const LoginForm = () => {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" />
         </div>
-        {isLogging && <Link to='/'>Log In</Link>}
+        {isLogging && <Link to="/">Log In</Link>}
         {!isLogging && (
           <section className={styles.terms}>
             <input type="checkbox" id="terms"></input>
@@ -73,7 +67,6 @@ const LoginForm = () => {
             <span onClick={logInHandler}> Log in</span>
           </p>
         )}
-        
       </form>
     </>
   );
