@@ -1,6 +1,7 @@
+const mongoose = require("mongoose");
 const HttpError = require("../models/http-error");
-const { where } = require("../models/post");
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const addPost = async (req, res, next) => {
   const { title, description, image, creator } = req.body;
@@ -9,10 +10,30 @@ const addPost = async (req, res, next) => {
     description,
     image,
     creator,
+    comments: [],
   });
 
+  let user;
+
   try {
-    await newPost.save();
+    user = await User.findById(creator);
+  } catch (err) {
+    const error = new HttpError("Failed", 500);
+    return next(error);
+  }
+
+  if (!user) {
+    const error = new HttpError("Could not find", 404);
+    return next(error);
+  }
+
+  try {
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await newPost.save({ session: sess });
+    user.posts.push(newPost);
+    await user.save({ session: sess });
+    await sess.commitTransaction();
   } catch (err) {
     const error = new HttpError("Failed at adding new post", 500);
     return next(error);
@@ -94,7 +115,8 @@ const deletePost = async (req, res, next) => {
 
   let post;
   try {
-    post = await Post.findById(postId);
+    post = await Post.findById(postId).populate("creator");
+    console.log(post);
   } catch (err) {
     const error = new HttpError("Something went wrong", 500);
     return next(error);
@@ -105,7 +127,12 @@ const deletePost = async (req, res, next) => {
     return next(error);
   }
   try {
-    await post.remove();
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await post.remove({ session: sess });
+    post.creator.posts.pull(post);
+    await post.creator.save({ session: sess });
+    await sess.commitTransaction();
   } catch (err) {
     const error = new HttpError("Something went wrong", 500);
     return next(error);

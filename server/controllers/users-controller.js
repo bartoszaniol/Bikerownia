@@ -38,7 +38,7 @@ const login = async (req, res, next) => {
 };
 
 const signup = async (req, res, next) => {
-  const { username, email, password, image, posts } = req.body;
+  const { username, email, password, image } = req.body;
   let existingUser;
 
   try {
@@ -58,7 +58,7 @@ const signup = async (req, res, next) => {
     email,
     password,
     image,
-    posts,
+    posts: [],
   });
   try {
     await createdUser.save();
