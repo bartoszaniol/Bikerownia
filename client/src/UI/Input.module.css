@@ -1,0 +1,13 @@
+.invalid label {
+  color: red;
+}
+
+.invalid > p {
+  color: red;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.invalid input {
+  border-bottom: red 3px solid;
+}

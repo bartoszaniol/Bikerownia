@@ -3,7 +3,7 @@
   position: absolute;
   background-color: white;
   border-top-color: #1466c5;
-  height: 35rem;
+  min-height: 35rem;
   width: 25rem;
   border-radius: 10px;
   display: flex;
@@ -47,6 +47,11 @@
   text-align: center;
 }
 
+.form button.disabled {
+  background-color: grey;
+  cursor: default;
+}
+
 .form button {
   margin-top: 10px;
   background-color: #1466c5;
@@ -55,6 +60,7 @@
   border: none;
   border-radius: 5px;
   padding: 5px 5px;
+  cursor: pointer;
 }
 
 .name {

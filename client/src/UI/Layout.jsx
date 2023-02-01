@@ -3,11 +3,11 @@ import Props from "../helpers/Interfaces";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout = ({ props }) => {
   return (
     <Fragment>
       <Navigation />
-      <div>{children}</div>
+      <div>{props.children}</div>
       {/* <Footer /> */}
     </Fragment>
   );
