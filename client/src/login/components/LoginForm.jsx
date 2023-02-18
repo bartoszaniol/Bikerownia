@@ -82,17 +82,18 @@ const LoginForm = () => {
     }
   };
 
-  const termsHandler = (event) => {
-    console.log(event);
-    // setTermsBool((prevState) => !prevState);
+  const termsHandler = () => {
+    setTermsBool((prevState) => !prevState);
   };
 
   const registerHandler = () => {
     setIsLogging(false);
+    setTermsBool(false);
   };
 
   const loginHandler = () => {
     setIsLogging(true);
+    setTermsBool(false);
   };
 
   return (
@@ -139,15 +140,17 @@ const LoginForm = () => {
         {isLogging && <Link to="/">Log In</Link>}
         {!isLogging && (
           <section className={styles.terms}>
-            <input type="checkbox" id="terms" />
+            <input type="checkbox" id="terms" onClick={termsHandler} />
             <label htmlFor="terms">Terms</label>
           </section>
         )}
         {!isLogging && (
           <button
             type="submit"
-            className={`${!formState.isValid && !termsBool && styles.disabled}`}
-            disabled={!formState.isValid && !termsBool}
+            className={`${
+              (!formState.isValid || !termsBool) && styles.disabled
+            }`}
+            disabled={!formState.isValid || !termsBool}
             onClick={registerUserHandler}
           >
             Register
