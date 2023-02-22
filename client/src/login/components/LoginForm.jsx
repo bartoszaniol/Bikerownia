@@ -1,5 +1,5 @@
-import { useState, useCallback, useReducer } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/auth-context";
 
 import styles from "./LoginForm.module.css";
 import Input from "../../UI/Input";
@@ -8,35 +8,12 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../UI/util/validators";
-
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case "INPUT_CHANGE":
-      let formIsValid = true;
-      for (const input in state.inputs) {
-        if (input === action.input) {
-          formIsValid = formIsValid && action.isValid;
-        } else {
-          formIsValid = formIsValid && state.inputs[input].isValid;
-        }
-      }
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.input]: { value: action.value, isValid: action.isValid },
-        },
-        isValid: formIsValid,
-      };
-
-    default:
-      return state;
-  }
-};
+import { useForm } from "../../hooks/use-form";
 
 const LoginForm = () => {
-  const [formState, dispatch] = useReducer(formReducer, {
-    inputs: {
+  const auth = useContext(AuthContext);
+  const [formState, inputHandler] = useForm(
+    {
       name: {
         value: "",
         isValid: false,
@@ -50,14 +27,11 @@ const LoginForm = () => {
         isValid: false,
       },
     },
-    isValid: false,
-  });
+    false
+  );
+
   const [isLogging, setIsLogging] = useState(true);
   const [termsBool, setTermsBool] = useState(false);
-
-  const inputHandler = useCallback((id, value, isValid) => {
-    dispatch({ type: "INPUT_CHANGE", value, isValid, input: id });
-  }, []);
 
   const registerUserHandler = async (e) => {
     e.preventDefault();
@@ -86,14 +60,13 @@ const LoginForm = () => {
     setTermsBool((prevState) => !prevState);
   };
 
-  const registerHandler = () => {
-    setIsLogging(false);
-    setTermsBool(false);
+  const changeModeHanlder = () => {
+    setIsLogging((prev) => !prev);
   };
 
-  const loginHandler = () => {
-    setIsLogging(true);
-    setTermsBool(false);
+  const loginHandler = (event) => {
+    event.preventDefault();
+    auth.login();
   };
 
   return (
@@ -137,7 +110,22 @@ const LoginForm = () => {
           onInput={inputHandler}
         />
 
-        {isLogging && <Link to="/">Log In</Link>}
+        {isLogging && (
+          <button
+            disabled={
+              !formState.inputs.email.isValid ||
+              !formState.inputs.password.isValid
+            }
+            className={`${
+              (!formState.inputs.email.isValid ||
+                !formState.inputs.password.isValid) &&
+              styles.disabled
+            }`}
+            onClick={loginHandler}
+          >
+            Log In
+          </button>
+        )}
         {!isLogging && (
           <section className={styles.terms}>
             <input type="checkbox" id="terms" onClick={termsHandler} />
@@ -159,13 +147,13 @@ const LoginForm = () => {
         {isLogging && (
           <p>
             Don't have an account?
-            <span onClick={registerHandler}> Register one</span>
+            <span onClick={changeModeHanlder}> Register one</span>
           </p>
         )}
         {!isLogging && (
           <p>
             Already have an account?
-            <span onClick={loginHandler}> Log in</span>
+            <span onClick={changeModeHanlder}> Log in</span>
           </p>
         )}
       </form>

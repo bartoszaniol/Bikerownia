@@ -1,4 +1,5 @@
 const express = require("express");
+const { check } = require("express-validator");
 
 const postsControllers = require("../controllers/posts-controller");
 
@@ -6,7 +7,11 @@ const router = express.Router();
 
 router.get("/", postsControllers.getPosts); // Get all posts
 
-router.post("/", postsControllers.addPost); // Add a new post
+router.post(
+  "/",
+  [check("title").notEmpty(), check("description").notEmpty()],
+  postsControllers.addPost
+); // Add a new post
 
 router.get("/:pid", postsControllers.getPostById); // Get a post by its id
 

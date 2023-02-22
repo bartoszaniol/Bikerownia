@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
+const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const Post = require("../models/post");
 const User = require("../models/user");
 
 const addPost = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("Invalid inputs passed", 422));
+  }
   const { title, description, image, creator } = req.body;
   const newPost = new Post({
     title,

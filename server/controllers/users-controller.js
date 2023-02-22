@@ -38,6 +38,10 @@ const login = async (req, res, next) => {
 };
 
 const signup = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("Invalid inputs passed", 422));
+  }
   const { username, email, password, image } = req.body;
   let existingUser;
 

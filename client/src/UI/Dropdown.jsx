@@ -1,21 +1,24 @@
-import { Link } from "react-router-dom";
-
 import InventoryIcon from "@mui/icons-material/Inventory";
 import LogoutIcon from "@mui/icons-material/Logout";
-import styles from './Dropdown.module.css'
+import styles from "./Dropdown.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth-context";
+import { useHistory } from "react-router-dom";
 const Dropdown = () => {
+  const auth = useContext(AuthContext);
+  const history = useHistory();
   return (
     <ul className={styles.menu}>
-        <li>
-          <InventoryIcon />
-          <Link to="/user">My posts</Link>
-        </li>
-        <li>
-          <LogoutIcon />
-          <Link to="/login">Logout</Link>
-        </li>
-      </ul>
-  )
-}
+      <li onClick={() => history.push("/user")}>
+        <InventoryIcon />
+        <button>My posts</button>
+      </li>
+      <li onClick={auth.logout}>
+        <LogoutIcon />
+        <button>Logout</button>
+      </li>
+    </ul>
+  );
+};
 
-export default Dropdown
+export default Dropdown;
